@@ -8,15 +8,14 @@ using NLayer.Core.Services;
 
 namespace NlLayer.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductController : CustomBaseController
+    
+    public class ProductsController : CustomBaseController
     {
         private readonly IMapper _mapper;
         private readonly IService<Product> _service;
         private readonly IProductService _productService;
 
-        public ProductController(IMapper mapper, IService<Product> service, IProductService productService)
+        public ProductsController(IMapper mapper, IService<Product> service, IProductService productService)
         {
             _mapper = mapper;
             _service = service;

@@ -23,7 +23,7 @@ namespace NlLayer.API.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<CustomResponseDto<IActionResult>> GetProductsWithCategory()
+        public async Task<IActionResult> GetProductsWithCategory()
         {
             return CreateActionResult(await _service.GetProductsWithCategory());
         }

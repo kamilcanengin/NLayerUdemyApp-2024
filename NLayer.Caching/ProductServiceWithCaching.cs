@@ -7,6 +7,7 @@ using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
 using NLayer.Service.Exceptions;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace NLayer.Caching
@@ -75,11 +76,11 @@ namespace NLayer.Caching
             }
         }
 
-        public Task<List<ProductsWithCategoryDto>> GetProductsWithCategory()
+        public Task<CustomResponseDto<List<ProductsWithCategoryDto>>> GetProductsWithCategory()
         {
             var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
             var productsWithCategoryDto = _mapper.Map<List<ProductsWithCategoryDto>>(products);
-            return Task.FromResult(productsWithCategoryDto);
+            return Task.FromResult(CustomResponseDto<List<ProductsWithCategoryDto>>.Success(200,productsWithCategoryDto));
         }
 
         public async Task RemoveAsync(Product entity)

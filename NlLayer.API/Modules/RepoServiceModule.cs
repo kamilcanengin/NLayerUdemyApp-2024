@@ -36,7 +36,7 @@ namespace NlLayer.API.Modules
             //Autofac --> InstancePerLifetimeScope() == AddScope()
             //Autofac --> InstancePerDependency() == AddTransient()
 
-            builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
+            //builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
 
         }
     }

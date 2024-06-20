@@ -2,10 +2,12 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using NLayer.Repository;
 using NLayer.Service.Mapping;
 using NLayer.Service.Validation;
 using NLayer.Web;
+using NLayer.Web.Services;
 using NlLayer.MVC.Modules;
 using System.Reflection;
 
@@ -26,6 +28,10 @@ builder.Services.AddDbContext<AppDbContext>(x =>
         options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
     });
 });
+
+builder.Services.AddHttpClient<ProductApiService>(opt => { opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]); });
+builder.Services.AddHttpClient<CategoryApiService>(opt => { opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]); });
+
 
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
